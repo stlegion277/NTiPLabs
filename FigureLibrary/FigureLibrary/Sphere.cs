@@ -11,7 +11,7 @@ namespace FigureLibrary
         /// 
         /// </summary>
         private double _radius;
-
+ //TODO: XML
         public double Radius
         {
             get
@@ -33,14 +33,14 @@ namespace FigureLibrary
         /// </summary>
         /// <param name="radius"></param>
         public Sphere(double radius)
-        {
+        {//TODO: Проверка входных параметров?
             Radius = radius;
         }
 
         public override double GetAmount
         {
             get
-            {
+            {//TODO: Грубо округлили!
                 return 1.33 * Math.PI * Radius * Radius * Radius;
 
             }

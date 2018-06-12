@@ -1,12 +1,12 @@
 ﻿using System;
 
 namespace FigureLibrary
-{
+{ //TODO: XML
     public class Pyramid : FigureBase
-    {
+    { //TODO: XML
         private double _area;
         private double _height;
-
+ //TODO: XML
         public double Area
         {
             get
@@ -22,7 +22,7 @@ namespace FigureLibrary
                 _area = value;
             }
         }
-
+ //TODO: XML
         public double Height
         {
             get
@@ -45,11 +45,11 @@ namespace FigureLibrary
         /// <param name="area"></param>
         /// <param name="height"></param>
         public Pyramid(double area, double height)
-        {
+        {//TODO: Проверка входных параметров?
             Area = area;
             Height = height;
         }
-
+ //TODO: XML
         public override double GetAmount
         {
             get

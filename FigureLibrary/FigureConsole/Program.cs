@@ -10,6 +10,8 @@ namespace FigureConsole
         {
             try
             {
+                //TODO: Программа должна запрашивать у пользователя ввода после каждого некорректного ввода и давать ему 
+                //TODO: возможность ввести корректные параметры сразу, а не заставлять вводить все параметры заново
                 //Ввод сторон параллелепипеда
                 Console.WriteLine("Введите сторону А");
                 int a = Convert.ToInt32(Console.ReadLine());
@@ -42,6 +44,7 @@ namespace FigureConsole
             catch (FormatException)
             {
                 Console.WriteLine("Введите корректное значение");
+                //TODO: Плохая практика. Лучше цикл с условием!
                 Main();
             }
           

@@ -2,13 +2,13 @@
 
 
 namespace FigureLibrary
-{
+{ //TODO: XML
     public class Parallelepiped : FigureBase
-    {
+    { //TODO: XML
         private double _a;
         private double _b;
         private double _c;
-
+ //TODO: XML
         public double A
         {
             get
@@ -24,7 +24,7 @@ namespace FigureLibrary
                 }
                 _a = value;
             }
-        }
+        } //TODO: XML
         public double B
         {
             get
@@ -39,7 +39,7 @@ namespace FigureLibrary
                 }
                 _b = value;
             }
-        }
+        } //TODO: XML
         public double C
         {
             get
@@ -63,11 +63,12 @@ namespace FigureLibrary
         /// <param name="c"></param>
         public Parallelepiped(double a, double b, double c)
         {
+            //TODO: Где проверки на значения сверху?
             A = a;
             B = b;  
             C = c;
         }
-
+ //TODO: XML
         public override double GetAmount
         {
             get
