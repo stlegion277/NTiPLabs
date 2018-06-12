@@ -21,7 +21,7 @@ namespace FigureConsole
                 int c = Convert.ToInt32(Console.ReadLine());
                 //Считаем обьем
                 FigureBase parallelepiped = new Parallelepiped(a, b, c);
-                double amountParallelepiped = parallelepiped.GetAmount;
+                double amountParallelepiped = parallelepiped.Amount;
                 Console.WriteLine("Обьем параллелепипеда = " + amountParallelepiped);
                 //ввод данных для обьема пирамиды
                 Console.WriteLine("Введите площадь пирамиды");
@@ -30,25 +30,29 @@ namespace FigureConsole
                 int height = Convert.ToInt32(Console.ReadLine());
                 //расчет обьема пирамиды
                 FigureBase pyramid = new Pyramid(area, height);
-                double amountPyramid = pyramid.GetAmount;
+                double amountPyramid = pyramid.Amount;
                 Console.WriteLine("Обьем пирамиды = " + amountPyramid);
                 //ввод данных для расчитывания обьема шара
                 Console.WriteLine("Введите радиус шара");
                 double radius = Convert.ToDouble(Console.ReadLine());
                 //расчет обьема шара
                 FigureBase sphere = new Sphere(radius);
-                double amountSphere = sphere.GetAmount;
+                double amountSphere = sphere.Amount;
                 Console.WriteLine("Обьем шара = " + amountSphere);
                 Console.ReadKey();
             }
             catch (FormatException)
             {
-                Console.WriteLine("Введите корректное значение");
-                //TODO: Плохая практика. Лучше цикл с условием!
-                Main();
+                ////TODO: Плохая практика. Лучше цикл с условием!
+                bool valid = true;
+                do
+                {
+                    Console.WriteLine("Введите корректное значение!");
+                    string input = Console.ReadLine();
+                    valid = Double.TryParse(input, out double i);
+                }
+                while (!valid);
             }
-          
-           
         }
     }
 }

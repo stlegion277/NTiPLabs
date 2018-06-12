@@ -1,12 +1,24 @@
 ﻿using System;
 
 namespace FigureLibrary
-{ //TODO: XML
+{ //TODO: XML//сделал
+
+    /// <summary>
+    /// Класс пирамида отнаследованный от абстрактного класса FigureBase
+    /// </summary>
     public class Pyramid : FigureBase
-    { //TODO: XML
+    { //TODO: XML//сделал
+
+        /// <summary>
+        /// поля для расчета обьема пирамиды
+        /// </summary>
         private double _area;
         private double _height;
  //TODO: XML
+
+        /// <summary>
+        /// свойство поля Area(площадь)
+        /// </summary>
         public double Area
         {
             get
@@ -23,6 +35,10 @@ namespace FigureLibrary
             }
         }
  //TODO: XML
+
+        /// <summary>
+        /// свойство поля Height(высота)
+        /// </summary>
         public double Height
         {
             get
@@ -45,12 +61,31 @@ namespace FigureLibrary
         /// <param name="area"></param>
         /// <param name="height"></param>
         public Pyramid(double area, double height)
-        {//TODO: Проверка входных параметров?
-            Area = area;
-            Height = height;
+        {//TODO: Проверка входных параметров?//сделал(надеюсь правильно)
+            if (area > 0)
+            {
+                Area = area;
+            }
+            else
+            {
+                throw new Exception("Значение должно быть положительным");
+            }
+
+            if (height > 0)
+            {
+                Height = height;
+            }
+            else
+            {
+                throw  new Exception("Значение должно быть положительным");
+            }
+           
         }
  //TODO: XML
-        public override double GetAmount
+        /// <summary>
+        /// Расчет обьема Пирамиды
+        /// </summary>
+        public override double Amount
         {
             get
             {

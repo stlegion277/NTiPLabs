@@ -3,15 +3,19 @@
 namespace FigureLibrary
 {
     /// <summary>
-    /// 
+    /// Класс шар отнаследованный от абстрактного класса FigureBase
     /// </summary>
     public class Sphere : FigureBase
     {
         /// <summary>
-        /// 
+        /// Поле радиус для расчета обьема шара
         /// </summary>
         private double _radius;
- //TODO: XML
+ //TODO: XML//сделал
+
+        /// <summary>
+        /// свойство поля Radius
+        /// </summary>
         public double Radius
         {
             get
@@ -33,15 +37,27 @@ namespace FigureLibrary
         /// </summary>
         /// <param name="radius"></param>
         public Sphere(double radius)
-        {//TODO: Проверка входных параметров?
-            Radius = radius;
+        {//TODO: Проверка входных параметров?//сделал
+            if (radius > 0)
+            {
+                Radius = radius;
+            }
+            else
+            {
+                throw new Exception("Значение должно быть положительным");
+            }
+            
         }
 
-        public override double GetAmount
+        /// <summary>
+        /// расчет обьема Шара
+        /// </summary>
+        public override double Amount
         {
             get
-            {//TODO: Грубо округлили!
-                return 1.33 * Math.PI * Radius * Radius * Radius;
+            {//TODO: Грубо округлили!//теперь нежно
+                
+                return (4/3) * Math.PI * Radius * Radius * Radius;
 
             }
         }

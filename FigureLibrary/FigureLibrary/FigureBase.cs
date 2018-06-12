@@ -6,9 +6,12 @@ namespace FigureLibrary
     /// </summary>
     public abstract class FigureBase
     {
- //TODO: XML
-        //TODO: Не должно быть Get в названии
-        public abstract double GetAmount { get; }
+ //TODO: XML//сделал
+        //TODO: Не должно быть Get в названии //сделал
+        /// <summary>
+        /// свойство для расчета обьема фигур
+        /// </summary>
+        public abstract double Amount { get; }
         
     }
 }
