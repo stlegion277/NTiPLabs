@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace FigureLibrary
 {
@@ -14,43 +11,52 @@ namespace FigureLibrary
 
         public double A
         {
-            get { return _a; }
+            get
+            {
+                return _a;
+            }
 
             private set
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Значение должно быть положительным");
+                    throw new Exception("Значение должно быть положительным");
                 }
                 _a = value;
             }
         }
         public double B
         {
-            get { return _b; }
+            get
+            {
+                return _b;
+            }
             private set
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Значение должно быть положительным");
+                    throw new Exception("Значение должно быть положительным");
                 }
                 _b = value;
             }
         }
         public double C
         {
-            get { return _c; }
+            get
+            {
+                return _c;
+            }
             private set
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Значение должно быть положительным");
+                    throw new Exception("Значение должно быть положительным");
                 }
                 _c = value;
             }
         }
         /// <summary>
-        /// Конструктор класса Параллелепипед
+        /// Конструктор класса <see cref="Parallelepiped"/>
         /// </summary>
         /// <param name="a"></param>
         /// <param name="b"></param>
@@ -62,9 +68,13 @@ namespace FigureLibrary
             C = c;
         }
 
-        public double GetAmount()
+        public override double GetAmount
         {
-            return A * B * C;
+            get
+            {
+                return A * B * C;
+            }
+            
         }
     }
 }

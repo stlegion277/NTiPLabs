@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿
 namespace FigureLibrary
 {
     /// <summary>
-    /// Метод подсчета обьема
+    /// Свойство подсчета обьема
     /// </summary>
-    public interface FigureBase
+    public abstract class FigureBase
     {
-        double GetAmount();
+        public abstract double GetAmount { get; }
+        
     }
 }

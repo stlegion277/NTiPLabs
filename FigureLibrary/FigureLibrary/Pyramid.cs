@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FigureLibrary
 {
@@ -13,12 +9,15 @@ namespace FigureLibrary
 
         public double Area
         {
-            get { return _area; }
+            get
+            {
+                return _area;
+            }
             private set
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Значение должно быть положительным");
+                   throw new Exception("Значение должно быть положительным");
                 }
                 _area = value;
             }
@@ -26,19 +25,22 @@ namespace FigureLibrary
 
         public double Height
         {
-            get { return _height; }
+            get
+            {
+                return _height;
+            }
             private set
             {
                 if (value < 0)
                 {
-                    Console.WriteLine("Значение должно быть положительным");
+                    throw new Exception("Значение должно быть положительным");
                 }
                 _height = value;
             }
         }
 
         /// <summary>
-        /// Конструктор класса Пирамида
+        /// Конструктор класса <see cref="Pyramid"/>
         /// </summary>
         /// <param name="area"></param>
         /// <param name="height"></param>
@@ -48,9 +50,13 @@ namespace FigureLibrary
             Height = height;
         }
 
-        public double GetAmount()
+        public override double GetAmount
         {
-            return (Area * Height) / 3.0;
+            get
+            {
+                return (Area * Height) / 3.0;
+            }
+
         }
     }
 }
