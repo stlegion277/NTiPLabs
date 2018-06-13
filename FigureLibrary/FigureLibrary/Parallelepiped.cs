@@ -2,20 +2,26 @@
 
 
 namespace FigureLibrary
-{ //TODO: XML//сделал
-
+{
     /// <summary>
     /// Класс параллелепипед отнаследованный от абстрактного класса FigureBase
     /// </summary>
     public class Parallelepiped : FigureBase
-    { //TODO: XML
+    {
         /// <summary>
-        /// Поля для расчета обьема параллелепипеда
+        /// Поле А для расчета обьема параллелепипеда
         /// </summary>
         private double _a;
+        /// <summary>
+        /// Поле Б для расчета обьема параллелепипеда
+        /// </summary>
         private double _b;
+        /// <summary>
+        /// Поле С для расчета обьема параллелепипеда
+        /// </summary>
         private double _c;
- //TODO: XML
+       
+
         /// <summary>
         /// свойство поля А
         /// </summary>
@@ -25,7 +31,6 @@ namespace FigureLibrary
             {
                 return _a;
             }
-
             private set
             {
                 if (value < 0)
@@ -34,7 +39,7 @@ namespace FigureLibrary
                 }
                 _a = value;
             }
-        } //TODO: XML
+        }
 
         /// <summary>
         /// свойство поля Б
@@ -53,7 +58,7 @@ namespace FigureLibrary
                 }
                 _b = value;
             }
-        } //TODO: XML
+        }
 
         /// <summary>
         /// свойство поля С
@@ -82,7 +87,7 @@ namespace FigureLibrary
         public Parallelepiped(double a, double b, double c)
         {
             //TODO: Где проверки на значения сверху?//сделал
-            if (a > 0)
+            if (a < upperlimit)
             {
                 A = a;
             }
@@ -91,7 +96,7 @@ namespace FigureLibrary
                 throw new Exception("Значение должно быть положительным");
             }
 
-            if (b > 0)
+            if (b < upperlimit)
             {
                 B = b;
             }
@@ -100,7 +105,7 @@ namespace FigureLibrary
                 throw new Exception("Значение должно быть положительным");
             }
 
-            if (c > 0)
+            if (c < upperlimit)
             {
                 C = c;
             }

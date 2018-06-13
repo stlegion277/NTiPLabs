@@ -43,7 +43,6 @@ namespace NUnitTest
                     {
                         var pyramid = new Pyramid(area, height);
                     }
-                    
                 );
 
         }
