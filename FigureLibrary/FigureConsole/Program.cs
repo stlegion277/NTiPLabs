@@ -3,8 +3,10 @@ using FigureLibrary;
 
 namespace FigureConsole
 {
+    //ToDO: RSDN - явное прописывание модификаторов доступа
     class Program
     {
+        //TODO: Зачем это здесь?
         // private static double CheckNumbers(string input)
         // {
         //    bool valid = true;
@@ -19,7 +21,7 @@ namespace FigureConsole
         //    while (!valid);
         //    return i;
         //}
-
+        //TODO: XML
         private static uint CheckNumbers(string input)
         {
             Console.WriteLine(input);
@@ -35,17 +37,21 @@ namespace FigureConsole
         {
             try
             {
-                //TODO: Программа должна запрашивать у пользователя ввода после каждого некорректного ввода и давать ему 
-                //TODO: возможность ввести корректные параметры сразу, а не заставлять вводить все параметры заново  //сделал
+                //TODO: Комменты в коде тривиальные и ненужные
                 //Ввод сторон параллелепипеда
-                FigureBase parallelepiped = new Parallelepiped(CheckNumbers("Введите сторону А"), 
-                    CheckNumbers("Введите сторону B"), CheckNumbers(("Введите сторону С")));
+                FigureBase parallelepiped = new Parallelepiped(
+                    CheckNumbers("Введите сторону А"), 
+                    CheckNumbers("Введите сторону B"), 
+                    CheckNumbers(("Введите сторону С")));
                 //Считаем обьем
+                //TODO: Тут и ниже - зачем отдельные переменные под рассчитанные значения?
                 double amountParallelepiped = parallelepiped.Amount;
                 Console.WriteLine("Обьем параллелепипеда = " + amountParallelepiped);
 
                 //ввод данных для расчета обьема пирамиды
-                FigureBase pyramid = new Pyramid(CheckNumbers("Введите площадь"), CheckNumbers("Введите высоту"));
+                FigureBase pyramid = new Pyramid(
+                    CheckNumbers("Введите площадь"), 
+                    CheckNumbers("Введите высоту"));
                 //расчет обьема пирамиды
                 double amountPyramid = pyramid.Amount;
                 Console.WriteLine("Обьем пирамиды = " + amountPyramid);
@@ -59,8 +65,7 @@ namespace FigureConsole
             }
             catch (FormatException)
             {
-                ////TODO: Плохая практика. Лучше цикл с условием!
-               Console.WriteLine("Введите корректное значение!");
+                Console.WriteLine("Введите корректное значение!");
                 Console.ReadKey();
             }
         }

@@ -8,20 +8,22 @@ namespace FigureLibrary
     /// </summary>
     public class Parallelepiped : FigureBase
     {
+        //TODO: Строго говоря - именования тоже фиговые. У размерностей в 3D есть названия понятнее: width, length, height
         /// <summary>
         /// Поле А для расчета обьема параллелепипеда
         /// </summary>
         private double _a;
+
         /// <summary>
         /// Поле Б для расчета обьема параллелепипеда
         /// </summary>
         private double _b;
+
         /// <summary>
         /// Поле С для расчета обьема параллелепипеда
         /// </summary>
         private double _c;
-       
-
+       //TODO: Во всех свойствах не убрали дубли проверки на значение.
         /// <summary>
         /// свойство поля А
         /// </summary>
@@ -86,7 +88,8 @@ namespace FigureLibrary
         /// <param name="c"></param>
         public Parallelepiped(double a, double b, double c)
         {
-            //TODO: Где проверки на значения сверху?//сделал
+            //TODO: Проверка везде дублируется + текст сообщений ВСЕХ в конструкторах также надублирован, что привело к 
+            //TODO: Некорректной копипасте сообщения из свойств
             if (a < upperlimit)
             {
                 A = a;
