@@ -68,7 +68,7 @@ namespace FigureLibrary
             }
             else
             {
-                throw new Exception("Значение должно быть положительным");
+                throw new Exception("Значение должно быть не больше 1000000 ");
             }
 
             if (height < upperlimit)
@@ -77,7 +77,7 @@ namespace FigureLibrary
             }
             else
             {
-                throw  new Exception("Значение должно быть положительным");
+                throw  new Exception("Значение должно быть не больше 1000000");
             }
            
         }

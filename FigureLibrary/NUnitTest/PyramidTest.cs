@@ -20,8 +20,8 @@ namespace NUnitTest
         [Test]
         [TestCase(1, 1, Description = "Значения полей = 1")]
         [TestCase(320, 549, Description = "Значение площади = 320, значение высоты = 549")]
-        [TestCase(Int32.MaxValue, Int32.MaxValue, Description = "Максимальное значение полей")]
-        public void PositiveTest(Int32 area, Int32 height)
+        [TestCase(100000, 1, Description = "Максимальное значение полей")]
+        public void PositiveTest(Double area, Double height)
         {
             var pyramid = new Pyramid(area, height);
         }
@@ -34,8 +34,8 @@ namespace NUnitTest
         [Test]
         [TestCase(-1, -1, Description = "Отрицательное значение полей")]
         [TestCase(-43, -54, Description = "Отрицательное значение полей")]
-        [TestCase(Int32.MinValue, Int32.MinValue, Description = "Минимальное значение полей")]
-        public void NegativeTest(Int32 area, Int32 height)
+        [TestCase(Double.MinValue, Double.MinValue, Description = "Минимальное значение полей")]
+        public void NegativeTest(Double area, Double height)
         {
             Assert.Throws<Exception>
                 (
@@ -50,8 +50,8 @@ namespace NUnitTest
         [Test]
         [TestCase(1, 1, Description = "Значения полей = 1")]
         [TestCase(320, 549, Description = "Значение площади = 320, значение высоты = 549")]
-        [TestCase(Int32.MaxValue, Int32.MaxValue, Description = "Максимальное значение полей")]
-        public void AmountPositiveTest(Int32 area, Int32 height)
+        [TestCase(100000, 1, Description = "Максимальное значение полей")]
+        public void AmountPositiveTest(Double area, Double height)
         {
             var pyramid = new Pyramid(area,height);
             var expected = (area * height) / 3.0;
