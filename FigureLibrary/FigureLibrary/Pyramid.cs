@@ -16,7 +16,7 @@ namespace FigureLibrary
         /// </summary>
         private double _height;
 
-
+        //TODO: Во всех свойствах не убрали дубли проверки на значение.
         /// <summary>
         /// свойство поля Area(площадь)
         /// </summary>
@@ -62,6 +62,8 @@ namespace FigureLibrary
         /// <param name="height"></param>
         public Pyramid(double area, double height)
         {
+            //TODO: Проверка везде дублируется + текст сообщений ВСЕХ в конструкторах также надублирован, что привело к 
+            //TODO: Некорректной копипасте сообщения из свойств
             if (area < upperlimit)
             {
                 Area = area;

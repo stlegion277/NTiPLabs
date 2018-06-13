@@ -11,7 +11,7 @@ namespace FigureLibrary
         /// Поле радиус для расчета обьема шара
         /// </summary>
         private double _radius;
-
+        //TODO: Во всех свойствах не убрали дубли проверки на значение.
         /// <summary>
         /// свойство поля Radius
         /// </summary>
@@ -36,7 +36,8 @@ namespace FigureLibrary
         /// </summary>
         /// <param name="radius"></param>
         public Sphere(double radius)
-        {
+        {//TODO: Проверка везде дублируется + текст сообщений ВСЕХ в конструкторах также надублирован, что привело к 
+            //TODO: Некорректной копипасте сообщения из свойств
             if (radius < upperlimit)
             {
                 Radius = radius;

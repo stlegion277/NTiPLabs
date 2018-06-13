@@ -12,6 +12,10 @@ namespace FigureLibrary
         /// свойство для расчета обьема фигур
         /// </summary>
         public abstract double Amount { get; }
+
+        /// <summary>
+        /// TODO: Зачем паблик? RSDN. XML.
+        /// </summary>
         public const double upperlimit = 1000000;
         
 
