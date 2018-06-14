@@ -7,29 +7,11 @@ namespace FigureLibrary
     /// </summary>
     public class Sphere : FigureBase
     {
-        /// <summary>
-        /// Поле радиус для расчета обьема шара
-        /// </summary>
-        private double _radius;
-        //TODO: Во всех свойствах не убрали дубли проверки на значение.
+        //TODO: Во всех свойствах не убрали дубли проверки на значение.//сделал
         /// <summary>
         /// свойство поля Radius
         /// </summary>
-        public double Radius
-        {
-            get
-            {
-                return _radius;
-            }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new Exception("Значение должно быть положительным");
-                }
-                _radius = value;
-            }
-        }
+        public double Radius { get; private set; }
 
         /// <summary>
         /// Конструктор класса <see cref="Sphere"/>
@@ -37,16 +19,8 @@ namespace FigureLibrary
         /// <param name="radius"></param>
         public Sphere(double radius)
         {//TODO: Проверка везде дублируется + текст сообщений ВСЕХ в конструкторах также надублирован, что привело к 
-            //TODO: Некорректной копипасте сообщения из свойств
-            if (radius < upperlimit)
-            {
-                Radius = radius;
-            }
-            else
-            {
-                throw new Exception("Значение должно быть не больше 1000000");
-            }
-            
+            //TODO: Некорректной копипасте сообщения из свойств//сделал
+            Radius = CheckValue(radius);
         }
 
         /// <summary>
@@ -56,7 +30,7 @@ namespace FigureLibrary
         {
             get
             {
-                return (4 / 3) * Math.PI * Radius * Radius * Radius;
+                return (4.0 / 3.0) * Math.PI * Radius * Radius * Radius;
             }
         }
     }

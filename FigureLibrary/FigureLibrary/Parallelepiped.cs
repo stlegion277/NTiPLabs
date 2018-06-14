@@ -8,114 +8,35 @@ namespace FigureLibrary
     /// </summary>
     public class Parallelepiped : FigureBase
     {
-        //TODO: Строго говоря - именования тоже фиговые. У размерностей в 3D есть названия понятнее: width, length, height
+
+        //TODO: Во всех свойствах не убрали дубли проверки на значение.//сделал
         /// <summary>
-        /// Поле А для расчета обьема параллелепипеда
+        /// свойство поля Длина(Length)
         /// </summary>
-        private double _a;
+        public double Length { get; private set; }
 
         /// <summary>
-        /// Поле Б для расчета обьема параллелепипеда
+        /// свойство поля Ширина(width)
         /// </summary>
-        private double _b;
+        public double Width { get; private set; }
 
         /// <summary>
-        /// Поле С для расчета обьема параллелепипеда
+        /// свойство поля Высота(Height)
         /// </summary>
-        private double _c;
-       //TODO: Во всех свойствах не убрали дубли проверки на значение.
-        /// <summary>
-        /// свойство поля А
-        /// </summary>
-        public double A
-        {
-            get
-            {
-                return _a;
-            }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new Exception("Значение должно быть положительным");
-                }
-                _a = value;
-            }
-        }
-
-        /// <summary>
-        /// свойство поля Б
-        /// </summary>
-        public double B
-        {
-            get
-            {
-                return _b;
-            }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new Exception("Значение должно быть положительным");
-                }
-                _b = value;
-            }
-        }
-
-        /// <summary>
-        /// свойство поля С
-        /// </summary>
-        public double C
-        {
-            get
-            {
-                return _c;
-            }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new Exception("Значение должно быть положительным");
-                }
-                _c = value;
-            }
-        }
+        public double Height { get; private set; }
         /// <summary>
         /// Конструктор класса <see cref="Parallelepiped"/>
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="c"></param>
-        public Parallelepiped(double a, double b, double c)
+        /// <param name="length"></param>
+        /// <param name="width"></param>
+        /// <param name="height"></param>
+        public Parallelepiped(double length, double width, double height)
         {
             //TODO: Проверка везде дублируется + текст сообщений ВСЕХ в конструкторах также надублирован, что привело к 
-            //TODO: Некорректной копипасте сообщения из свойств
-            if (a < upperlimit)
-            {
-                A = a;
-            }
-            else
-            {
-                throw new Exception("Значение должно быть не больше 1000000");
-            }
-
-            if (b < upperlimit)
-            {
-                B = b;
-            }
-            else
-            {
-                throw new Exception("Значение должно быть не больше 1000000");
-            }
-
-            if (c < upperlimit)
-            {
-                C = c;
-            }
-            else
-            {
-                throw new Exception("Значение должно быть не больше 1000000");
-            }
+            //TODO: Некорректной копипасте сообщения из свойcтв //сделал
+            Length = CheckValue(length);
+            Width = CheckValue(width);
+            Height = CheckValue(height);
         }
  //TODO: XML
         /// <summary>
@@ -125,7 +46,7 @@ namespace FigureLibrary
         {
             get
             {
-                return A * B * C;
+                return Length * Width * Height;
             }
             
         }

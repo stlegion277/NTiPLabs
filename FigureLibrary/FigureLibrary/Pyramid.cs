@@ -8,52 +8,14 @@ namespace FigureLibrary
     public class Pyramid : FigureBase
     {
         /// <summary>
-        /// поле area(площадь) для расчета обьема пирамиды
-        /// </summary>
-        private double _area;
-        /// <summary>
-        /// поле height(высота) для расчета обьема пирамиды
-        /// </summary>
-        private double _height;
-
-        //TODO: Во всех свойствах не убрали дубли проверки на значение.
-        /// <summary>
         /// свойство поля Area(площадь)
         /// </summary>
-        public double Area
-        {
-            get
-            {
-                return _area;
-            }
-            private set
-            {
-                if (value < 0)
-                {
-                   throw new Exception("Значение должно быть положительным");
-                }
-                _area = value;
-            }
-        }
+        public double Area { get; }
 
         /// <summary>
         /// свойство поля Height(высота)
         /// </summary>
-        public double Height
-        {
-            get
-            {
-                return _height;
-            }
-            private set
-            {
-                if (value < 0)
-                {
-                    throw new Exception("Значение должно быть положительным");
-                }
-                _height = value;
-            }
-        }
+        public double Height { get; }
 
         /// <summary>
         /// Конструктор класса <see cref="Pyramid"/>
@@ -63,24 +25,9 @@ namespace FigureLibrary
         public Pyramid(double area, double height)
         {
             //TODO: Проверка везде дублируется + текст сообщений ВСЕХ в конструкторах также надублирован, что привело к 
-            //TODO: Некорректной копипасте сообщения из свойств
-            if (area < upperlimit)
-            {
-                Area = area;
-            }
-            else
-            {
-                throw new Exception("Значение должно быть не больше 1000000 ");
-            }
-
-            if (height < upperlimit)
-            {
-                Height = height;
-            }
-            else
-            {
-                throw  new Exception("Значение должно быть не больше 1000000");
-            }
+            //TODO: Некорректной копипасте сообщения из свойств//сделал
+            Area = CheckValue(area);
+            Height = CheckValue(height);
            
         }
 

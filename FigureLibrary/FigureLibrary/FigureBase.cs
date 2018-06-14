@@ -14,10 +14,28 @@ namespace FigureLibrary
         public abstract double Amount { get; }
 
         /// <summary>
-        /// TODO: Зачем паблик? RSDN. XML.
+        /// константное значение для ограничения значения сверху TODO: Зачем паблик? RSDN. XML.//сделал
         /// </summary>
-        public const double upperlimit = 1000000;
-        
+        private const double Upperlimit = 1000000;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="a"></param>
+        /// <returns></returns>
+        protected double CheckValue(double a)
+        {
+            if (a > Upperlimit)
+            {
+                throw new ArgumentException("BLA BLA");
+            }
+
+            if (a < 0)
+            {
+                throw new ArgumentException("BLA BLA");
+            }
+            return a;
+        }
 
     }
 }

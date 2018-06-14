@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FigureLibrary;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace NUnitTest
 {
@@ -57,7 +52,8 @@ namespace NUnitTest
             var expected = (area * height) / 3.0;
             var actual = pyramid.Amount;
             Assert.AreEqual(expected,actual);
-
+            Assert.AreEqual(pyramid.Area,area);
+            Assert.AreEqual(pyramid.Height,height);
         }
     }
 }

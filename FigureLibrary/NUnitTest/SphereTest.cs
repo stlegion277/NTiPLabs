@@ -14,16 +14,16 @@ namespace NUnitTest
     {
         [Test]
         [TestCase(3, Description = "Значение радиуса = 3")]
-        [TestCase(Int32.MaxValue, Description = "Максимальное значение радиуса")]
-        public void PositiveSphereTest(Int32 radius)
+        [TestCase(100000, Description = "Максимальное значение радиуса")]
+        public void PositiveSphereTest(Double radius)
         {
             var sphere = new Sphere(radius);
         }
 
         [Test]
         [TestCase(-1, Description = "Значение радиуса = -1")]
-        [TestCase(Int32.MinValue, Description = "Минмальное значение радиуса")]
-        public void NegativeSphereTest(Int32 radius)
+        [TestCase(Double.MinValue, Description = "Минмальное значение радиуса")]
+        public void NegativeSphereTest(Double radius)
         {
             Assert.Throws<Exception>
             (
@@ -37,13 +37,13 @@ namespace NUnitTest
         [Test]
         [TestCase(23, Description = "Значение радиуса = 23")]
         [TestCase(643, Description = "Значение радиуса = 643")]
-        public void SphereAmountTest(Int32 radius)
+        public void SphereAmountTest(Double radius)
         {
             var sphere = new Sphere(radius);
-            var expected = (4 / 3) * Math.PI * radius * radius * radius;
+            var expected = (4.0 / 3.0) * Math.PI * radius * radius * radius;
             var actual = sphere.Amount;
             Assert.AreEqual(expected, actual);
-
+            Assert.AreEqual(sphere.Radius, radius);
         }
     }
 }
