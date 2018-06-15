@@ -32,7 +32,7 @@ namespace NUnitTest
         [TestCase(Double.MinValue, Double.MinValue, Description = "Минимальное значение полей")]
         public void NegativeTest(Double area, Double height)
         {
-            Assert.Throws<Exception>
+            Assert.Throws<ArgumentException>
                 (
                     delegate
                     {

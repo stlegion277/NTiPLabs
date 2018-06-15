@@ -22,7 +22,7 @@ namespace NUnitTest
         [TestCase(Double.MinValue, Double.MinValue, Double.MinValue, Description = "Значения сторон минимальны")]
         public void ParallelepipedNegativeTest(Double length, Double width, Double height)
         {
-            Assert.Throws<Exception>
+            Assert.Throws<ArgumentException>
             (
                 delegate
                 {

@@ -16,7 +16,7 @@ namespace FigureLibrary
         /// <summary>
         /// константное значение для ограничения значения сверху TODO: Зачем паблик? RSDN. XML.//сделал
         /// </summary>
-        private const double Upperlimit = 1000000;
+        private const double Upperlimit = 100000;
 
         /// <summary>
         /// 
@@ -27,12 +27,12 @@ namespace FigureLibrary
         {
             if (a > Upperlimit)
             {
-                throw new ArgumentException("BLA BLA");
+                throw new ArgumentException("Значение должно быть меньше 100000 ");
             }
 
             if (a < 0)
             {
-                throw new ArgumentException("BLA BLA");
+                throw new ArgumentException("Значение должно быть меньше 100000");
             }
             return a;
         }

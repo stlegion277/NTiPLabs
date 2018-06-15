@@ -25,7 +25,7 @@ namespace NUnitTest
         [TestCase(Double.MinValue, Description = "Минмальное значение радиуса")]
         public void NegativeSphereTest(Double radius)
         {
-            Assert.Throws<Exception>
+            Assert.Throws<ArgumentException>
             (
                 delegate
                 {
