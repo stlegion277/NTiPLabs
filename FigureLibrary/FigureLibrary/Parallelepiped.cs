@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 
 namespace FigureLibrary
@@ -6,6 +7,7 @@ namespace FigureLibrary
     /// <summary>
     /// Класс параллелепипед отнаследованный от абстрактного класса FigureBase
     /// </summary>
+    [DataContract]
     public class Parallelepiped : FigureBase
     {
 
@@ -13,16 +15,19 @@ namespace FigureLibrary
         /// <summary>
         /// свойство поля Длина(Length)
         /// </summary>
+        [DataMember]
         public double Length { get; private set; }
 
         /// <summary>
         /// свойство поля Ширина(width)
         /// </summary>
+        [DataMember]
         public double Width { get; private set; }
 
         /// <summary>
         /// свойство поля Высота(Height)
         /// </summary>
+        [DataMember]
         public double Height { get; private set; }
         /// <summary>
         /// Конструктор класса <see cref="Parallelepiped"/>

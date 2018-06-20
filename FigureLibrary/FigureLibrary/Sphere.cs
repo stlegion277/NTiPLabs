@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
+
+
 
 namespace FigureLibrary
 {
     /// <summary>
     /// Класс шар отнаследованный от абстрактного класса FigureBase
     /// </summary>
+    [DataContract]
     public class Sphere : FigureBase
     {
         //TODO: Во всех свойствах не убрали дубли проверки на значение.//сделал
         /// <summary>
         /// свойство поля Radius
         /// </summary>
+        [DataMember]
         public double Radius { get; private set; }
 
         /// <summary>

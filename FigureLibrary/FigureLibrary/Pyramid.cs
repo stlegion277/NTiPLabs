@@ -1,20 +1,24 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace FigureLibrary
 {
     /// <summary>
     /// Класс пирамида отнаследованный от абстрактного класса FigureBase
     /// </summary>
+    [DataContract]
     public class Pyramid : FigureBase
     {
         /// <summary>
         /// свойство поля Area(площадь)
         /// </summary>
+        [DataMember]
         public double Area { get; }
 
         /// <summary>
         /// свойство поля Height(высота)
         /// </summary>
+        [DataMember]
         public double Height { get; }
 
         /// <summary>
