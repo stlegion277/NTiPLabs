@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FigureLibrary;
-using FigureView.Properties;
 
 namespace FigureView
 {
@@ -18,7 +11,9 @@ namespace FigureView
     {
         private List<FigureBase> _figures;
         private DataContractJsonSerializer _serializer;
-        static int maxvalue = 10;
+       
+
+     
 
         public MainForm()
         {
@@ -26,38 +21,48 @@ namespace FigureView
             _figures = new List<FigureBase>();
             bindingSource.DataSource = _figures;
             dataGridView.DataSource = bindingSource;
+            dataGridView.Refresh();
             List<Type> knownTypes = new List<Type>
             {
-                typeof(Parallelepiped),
                 typeof(Pyramid),
+                typeof(Parallelepiped),
                 typeof(Sphere),
             };
+           
             _serializer = new DataContractJsonSerializer(typeof(List<FigureBase>), knownTypes);
         }
 
-         private void ChangeIDBox(EventArgs e)
+        private void HideControls()
         {
-            for (int index = 0; index < DataGridView.RowCount; index++)
+            parallelepipedInfoControl.Visible = false;
+            pyramidInfoControl.Visible = false;
+            sphereInfoControl.Visible = false;
+        }
+
+
+        private void ChangeIDBox(EventArgs e)
+        {
+            for (int index = 0; index < dataGridView.RowCount; index++)
             {
-                DataGridView.Rows[index].Visible = true;
+                dataGridView.Rows[index].Visible = true;
             }
 
-            if (MinID.Text != String.Empty && MaxID.Text != String.Empty)
+            if (FromVolume.Text != String.Empty && ToVolume.Text != String.Empty)
             {
                 List<int> indexes = new List<int>();
-                for (int counter = 0; counter < DataGridView.RowCount; counter++)
+                for (int counter = 0; counter < dataGridView.RowCount; counter++)
                 {
-                    double volume = Convert.ToDouble(DataGridView.Rows[counter].Cells["Column2"].Value);
-                    if ((volume < Convert.ToDouble(MinID.Text))
-                        || (volume > Convert.ToDouble(MaxID.Text)))
+                    double volume = Convert.ToDouble(dataGridView.Rows[counter].Cells["Volume"].Value);
+                    if ((volume < Convert.ToDouble(FromVolume.Text))
+                        || (volume > Convert.ToDouble(ToVolume.Text)))
                     {
                         indexes.Add(counter);
                     }
                 }
-                DataGridView.CurrentCell = null;
+                dataGridView.CurrentCell = null;
                 foreach (int index in indexes)
                 {
-                    DataGridView.Rows[index].Visible = false;
+                    dataGridView.Rows[index].Visible = false;
                 }
 
             }
@@ -74,22 +79,25 @@ namespace FigureView
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            CreateFigureWindowForm addFigure = new CreateFigureWindowForm();
+            CreateFigureWindowForm addFigure = new CreateFigureWindowForm()
             {
-                ReadOnly = false;
-            }
-            addFigure.ShowDialog();
-            if (addFigure.DialogResult != DialogResult.OK)
-            {
-                return;
-            }
+                ReadOnly = false
+            };
 
-            if (addFigure.Figure != null)
+            addFigure.ShowDialog();
+            if (addFigure.DialogResult == DialogResult.OK)
             {
                 bindingSource.Add(addFigure.Figure);
             }
 
-
+            if (addFigure.DialogResult != DialogResult.OK)
+            {
+                return;
+            }
+            if (addFigure.Figure != null)
+            {
+                bindingSource.Add(addFigure.Figure);
+            }
         }
 
         private void RemoveButton_Click(object sender, EventArgs e)
@@ -98,6 +106,7 @@ namespace FigureView
             {
                 int index = dataGridView.SelectedCells[0].RowIndex;
                 dataGridView.Rows.RemoveAt(index);
+                HideControls();
             }
         }   
 
@@ -105,8 +114,6 @@ namespace FigureView
         {
             ChangeIDBox(e);
         }
-
-        
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -236,6 +243,25 @@ namespace FigureView
                     sphereInfoControl.Sphere = sphere;
                     break;
             }
+        }
+
+        private void ModifyButton_Click(object sender, EventArgs e)
+        {
+            CreateFigureWindowForm modifyFigureForm = new CreateFigureWindowForm()
+            {
+
+                Figure = _figures[dataGridView.CurrentRow.Index],
+                ReadOnly = false
+            };
+
+            modifyFigureForm.ShowDialog();
+
+            if (modifyFigureForm.DialogResult != DialogResult.OK) return;
+            if (modifyFigureForm.Figure == null) return;
+
+            _figures[dataGridView.CurrentRow.Index] = modifyFigureForm.Figure;
+            bindingSource.ResetCurrentItem();
+            HideControls();
         }
     }
 }

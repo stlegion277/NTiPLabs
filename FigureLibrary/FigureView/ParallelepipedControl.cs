@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FigureLibrary;
-using FigureView.Properties;
 
 namespace FigureView
 {
@@ -17,11 +10,16 @@ namespace FigureView
         private int _length = 0;
         private int _width = 0;
         private int _height = 0;
-
+        
+        [Browsable(false)]
         public Parallelepiped Parallelepiped
         {
             get
             {
+                //var _length = LengthTextBox.Text != string.Empty ? Convert.ToDouble(LengthTextBox.Text) : 0;
+                //var _width = WidthTextBox.Text != string.Empty ? Convert.ToDouble(WidthTextBox.Text) : 0;
+                //var _height = HeightTextBox.Text != string.Empty ? Convert.ToDouble(HeightTextBox.Text) : 0;
+
                 if ((_length <= 10000) && (_width <= 10000) && (_height <= 10000)
                     && (_length > 0) && (_width > 0) && (_height > 0)) 
                 {
@@ -29,8 +27,8 @@ namespace FigureView
                 }
                 else
                 {
-                    MessageBox.Show("Введите целое положительное число в диапазоне от 0 до 10000!", 
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Введите целое положительное число в диапазоне от 0 до 10000!", 
+                    //    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
             }
@@ -42,9 +40,9 @@ namespace FigureView
                 }
                 else
                 {
-                    LengthTextBox.Text = Convert.ToString((value as Parallelepiped).Length);
-                    WidthTextBox.Text = Convert.ToString((value as Parallelepiped).Width);
-                    HeightTextBox.Text = Convert.ToString((value as Parallelepiped).Height);
+                    LengthTextBox.Text = Convert.ToString(value.Length);
+                    WidthTextBox.Text = Convert.ToString(value.Width);
+                    HeightTextBox.Text = Convert.ToString(value.Height);
                 }
             }
         }

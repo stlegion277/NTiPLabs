@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FigureLibrary;
 
@@ -15,12 +9,13 @@ namespace FigureView
     {
         public CreateFigureWindowForm()
         {
-            this.Size = new Size(320, 300);
-            ParallelepipedControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
-            PyramidControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
-            SphereControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             InitializeComponent();
-        }
+            Size = new Size(320, 300);
+            pyramidControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+            parallelepipedControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+            sphereControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+           
+        }   
 
         public FigureBase Figure
         {
@@ -29,11 +24,11 @@ namespace FigureView
                 switch (SelectFigureBox.SelectedIndex)
                 {
                     case 0:
-                        return ParallelepipedControl.Parallelepiped;
+                        return pyramidControl.Pyramid;
                     case 1:
-                        return PyramidControl.Pyramid;
+                        return parallelepipedControl.Parallelepiped;
                     case 2:
-                        return SphereControl.Sphere;
+                        return sphereControl.Sphere;
                     default:
                         return null;
                 }
@@ -42,71 +37,60 @@ namespace FigureView
             {
                 switch (value)
                 {
-                    case Parallelepiped _parallelepiped:
-                      ParallelepipedControl.Parallelepiped = _parallelepiped;
+                    case Parallelepiped parallelepiped:
+                        parallelepipedControl.Parallelepiped = parallelepiped;
                         break;
-                    case Pyramid _pyramid:
-                        PyramidControl.Pyramid = _pyramid;
+                    case Pyramid pyramid:
+                        pyramidControl.Pyramid = pyramid;
                         break;
-                    case Sphere _sphere:
-                        SphereControl.Sphere = _sphere;
+                    case Sphere sphere:
+                        sphereControl.Sphere = sphere;
                         break;
                 }
             }
-        }
-
-        private void BackToMain()
-        {
-            SphereControl.Visible = false;
-            ParallelepipedControl.Visible = false;
-            ParallelepipedControl.Visible = false;
-
-            SelectFigureBox.SelectedIndex = -1;
-
-            this.Hide();
         }
 
         public bool ReadOnly
         {
             set
             {
-                ParallelepipedControl.ReadOnly = value;
-                PyramidControl.ReadOnly = value;
-                SphereControl.ReadOnly = value;
+                parallelepipedControl.ReadOnly = value;
+                pyramidControl.ReadOnly = value;
+                sphereControl.ReadOnly = value;
             }
-        }
-
-        private void CreateFIgureWindowForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void SelectFigureBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SelectFigureBox.SelectedIndex == 0)
             {
-                SphereControl.Visible = false;
-                PyramidControl.Visible = false;
-                ParallelepipedControl.Visible = true;
-                ParallelepipedControl.Location = new Point(9, 75);
+                sphereControl.Visible = false;
+                pyramidControl.Visible = true;
+                parallelepipedControl.Visible = false;
+                parallelepipedControl.Location = new Point(9, 75);
 
 
             }
             else if (SelectFigureBox.SelectedIndex == 1)
             {
-                SphereControl.Visible = false;
-                PyramidControl.Visible = true;
-                ParallelepipedControl.Visible = false;
-                PyramidControl.Location = new Point(9, 75);
+                sphereControl.Visible = false;
+                pyramidControl.Visible = false;
+                parallelepipedControl.Visible = true;
+                pyramidControl.Location = new Point(9, 75);
             }
             else if (SelectFigureBox.SelectedIndex == 2)
             {
-                SphereControl.Visible = true;
-                PyramidControl.Visible = false;
-                ParallelepipedControl.Visible = false;
-                SphereControl.Location = new Point(9, 75);
+                sphereControl.Visible = true;
+                pyramidControl.Visible = false;
+                parallelepipedControl.Visible = false;
+                sphereControl.Location = new Point(9, 75);
 
             }
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
         }
     }
 }

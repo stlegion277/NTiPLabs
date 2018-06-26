@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FigureLibrary;
 
@@ -16,7 +10,7 @@ namespace FigureView
         private uint _baseArea = 0;
         private uint _height = 0;
 
-
+        
         public PyramidControl()
         {
             InitializeComponent();
@@ -49,10 +43,13 @@ namespace FigureView
             }
         }
 
+        [Browsable(false)]
         public Pyramid Pyramid
         {
             get
             {
+                var _baseArea = AreaTextBox.Text != string.Empty ? Convert.ToDouble(AreaTextBox.Text) : 0;
+                var _height= HeightTextBox.Text != string.Empty ? Convert.ToDouble(HeightTextBox.Text) : 0;
                 if ((_baseArea <= 100000) && (_height <= 800)
                                           && (_baseArea > 0) && (_height > 0))
                 {
@@ -60,9 +57,9 @@ namespace FigureView
                 }
                 else
                 {
-                    MessageBox.Show("Площадь основания должна быть больше 0 и не превышать 100000\n" +
-                                    "Высота должна быть больше 0 и не превышать 800", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Площадь основания должна быть больше 0 и не превышать 100000\n" +
+                    //                "Высота должна быть больше 0 и не превышать 800", "Error",
+                    //    MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
             }

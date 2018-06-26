@@ -107,7 +107,7 @@
             this.Controls.Add(this.HeightTextBox);
             this.Controls.Add(this.LengthTextBox);
             this.Name = "ParallelepipedControl";
-            this.Size = new System.Drawing.Size(249, 194);
+            this.Size = new System.Drawing.Size(194, 160);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FigureLibrary;
 
@@ -19,18 +13,20 @@ namespace FigureView
             InitializeComponent();
         }
 
+        [Browsable(false)]
         public Sphere Sphere
         {
             get
             {
+                var _radius = RadiusTextBox.Text != string.Empty ? Convert.ToDouble(RadiusTextBox.Text) : 0;
                 if (_radius < 10000 && _radius > 0)
                 {
                     return new Sphere(_radius);
                 }
                 else
                 {
-                    MessageBox.Show("Введите целое положительное число в диапазоне от 0 до 10000!",
-                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Введите целое положительное число в диапазоне от 0 до 10000!",
+                    //    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
             }
@@ -56,7 +52,11 @@ namespace FigureView
             }
         }
 
-        public bool ReadOnly { get; set; } = true;
+        public bool ReadOnly
+        {
+            get => RadiusTextBox.ReadOnly;
+            set => RadiusTextBox.ReadOnly = value;
+        }
 
         private void EnterTextBox(object sender)
         {
