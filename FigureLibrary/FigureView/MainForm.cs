@@ -62,7 +62,7 @@ namespace FigureView
                 dataGridView.CurrentCell = null;
                 foreach (int index in indexes)
                 {
-                    dataGridView.Rows[index].Visible = false;
+                    dataGridView.Rows[index].Visible = true;
                 }
 
             }
@@ -221,19 +221,19 @@ namespace FigureView
         {
             switch (figure)
             {
-                case Parallelepiped parallelepiped:
-                    parallelepipedInfoControl.Visible = true;
-                    pyramidInfoControl.Visible = false;
-                    sphereInfoControl.Visible = false;
-                    pyramidInfoControl.ReadOnly = true;
-                    parallelepipedInfoControl.Parallelepiped = parallelepiped;
-                    break;
                 case Pyramid pyramid:
                     pyramidInfoControl.Visible = true;
                     parallelepipedInfoControl.Visible = false;
                     sphereInfoControl.Visible = false;
                     pyramidInfoControl.ReadOnly = true;
                     pyramidInfoControl.Pyramid = pyramid;
+                    break;
+                case Parallelepiped parallelepiped:
+                    parallelepipedInfoControl.Visible = true;
+                    pyramidInfoControl.Visible = false;
+                    sphereInfoControl.Visible = false;
+                    pyramidInfoControl.ReadOnly = true;
+                    parallelepipedInfoControl.Parallelepiped = parallelepiped;
                     break;
                 case Sphere sphere:
                     sphereInfoControl.Visible = true;

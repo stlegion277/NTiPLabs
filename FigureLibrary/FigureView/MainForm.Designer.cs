@@ -46,9 +46,9 @@
             this.ToVolume = new System.Windows.Forms.TextBox();
             this.HyphenLabel = new System.Windows.Forms.Label();
             this.SearchLabel = new System.Windows.Forms.Label();
-            this.parallelepipedInfoControl = new FigureView.ParallelepipedControl();
             this.pyramidInfoControl = new FigureView.PyramidControl();
             this.sphereInfoControl = new FigureView.SphereControl();
+            this.parallelepipedInfoControl = new FigureView.ParallelepipedControl();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -181,15 +181,6 @@
             this.SearchLabel.TabIndex = 8;
             this.SearchLabel.Text = "Search";
             // 
-            // parallelepipedInfoControl
-            // 
-            this.parallelepipedInfoControl.Location = new System.Drawing.Point(445, 156);
-            this.parallelepipedInfoControl.Name = "parallelepipedInfoControl";
-            this.parallelepipedInfoControl.Parallelepiped = null;
-            this.parallelepipedInfoControl.ReadOnly = true;
-            this.parallelepipedInfoControl.Size = new System.Drawing.Size(150, 150);
-            this.parallelepipedInfoControl.TabIndex = 9;
-            // 
             // pyramidInfoControl
             // 
             this.pyramidInfoControl.Location = new System.Drawing.Point(12, 232);
@@ -208,14 +199,24 @@
             this.sphereInfoControl.Sphere = null;
             this.sphereInfoControl.TabIndex = 11;
             // 
+            // parallelepipedInfoControl
+            // 
+            this.parallelepipedInfoControl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.parallelepipedInfoControl.Location = new System.Drawing.Point(441, 136);
+            this.parallelepipedInfoControl.Name = "parallelepipedInfoControl";
+            this.parallelepipedInfoControl.Parallelepiped = null;
+            this.parallelepipedInfoControl.ReadOnly = true;
+            this.parallelepipedInfoControl.Size = new System.Drawing.Size(150, 150);
+            this.parallelepipedInfoControl.TabIndex = 12;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 371);
+            this.Controls.Add(this.parallelepipedInfoControl);
             this.Controls.Add(this.sphereInfoControl);
             this.Controls.Add(this.pyramidInfoControl);
-            this.Controls.Add(this.parallelepipedInfoControl);
             this.Controls.Add(this.SearchLabel);
             this.Controls.Add(this.HyphenLabel);
             this.Controls.Add(this.ToVolume);
@@ -261,9 +262,9 @@
         private System.Windows.Forms.TextBox ToVolume;
         private System.Windows.Forms.Label HyphenLabel;
         private System.Windows.Forms.Label SearchLabel;
-        private ParallelepipedControl parallelepipedInfoControl;
         private PyramidControl pyramidInfoControl;
         private SphereControl sphereInfoControl;
+        private ParallelepipedControl parallelepipedInfoControl;
     }
 }
 

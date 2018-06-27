@@ -37,11 +37,11 @@ namespace FigureView
             {
                 switch (value)
                 {
-                    case Parallelepiped parallelepiped:
-                        parallelepipedControl.Parallelepiped = parallelepiped;
-                        break;
                     case Pyramid pyramid:
                         pyramidControl.Pyramid = pyramid;
+                        break;
+                    case Parallelepiped parallelepiped:
+                        parallelepipedControl.Parallelepiped = parallelepiped;
                         break;
                     case Sphere sphere:
                         sphereControl.Sphere = sphere;
@@ -67,8 +67,7 @@ namespace FigureView
                 sphereControl.Visible = false;
                 pyramidControl.Visible = true;
                 parallelepipedControl.Visible = false;
-                parallelepipedControl.Location = new Point(9, 75);
-
+                pyramidControl.Location = new Point(9, 75);
 
             }
             else if (SelectFigureBox.SelectedIndex == 1)
@@ -76,7 +75,7 @@ namespace FigureView
                 sphereControl.Visible = false;
                 pyramidControl.Visible = false;
                 parallelepipedControl.Visible = true;
-                pyramidControl.Location = new Point(9, 75);
+                parallelepipedControl.Location = new Point(9, 75);
             }
             else if (SelectFigureBox.SelectedIndex == 2)
             {
