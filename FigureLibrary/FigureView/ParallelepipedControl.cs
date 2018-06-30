@@ -10,27 +10,24 @@ namespace FigureView
         private int _length = 0;
         private int _width = 0;
         private int _height = 0;
+
+        public ParallelepipedControl()
+        {
+            InitializeComponent();
+        }
         
         [Browsable(false)]
         public Parallelepiped Parallelepiped
         {
             get
             {
-                //var _length = LengthTextBox.Text != string.Empty ? Convert.ToDouble(LengthTextBox.Text) : 0;
-                //var _width = WidthTextBox.Text != string.Empty ? Convert.ToDouble(WidthTextBox.Text) : 0;
-                //var _height = HeightTextBox.Text != string.Empty ? Convert.ToDouble(HeightTextBox.Text) : 0;
+                var _length = LengthTextBox.Text != string.Empty ? Convert.ToDouble(LengthTextBox.Text) : 0;
+                var _width = WidthTextBox.Text != string.Empty ? Convert.ToDouble(WidthTextBox.Text) : 0;
+                var _height = HeightTextBox.Text != string.Empty ? Convert.ToDouble(HeightTextBox.Text) : 0;
 
-                if ((_length <= 10000) && (_width <= 10000) && (_height <= 10000)
-                    && (_length > 0) && (_width > 0) && (_height > 0)) 
-                {
-                    return new Parallelepiped(_length, _width, _height);
-                }
-                else
-                {
-                    //MessageBox.Show("Введите целое положительное число в диапазоне от 0 до 10000!", 
-                    //    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
+
+                return new Parallelepiped(_length, _width, _height);
+              
             }
             set
             {
@@ -47,7 +44,17 @@ namespace FigureView
             }
         }
 
-        public bool ReadOnly { get; set; } = true;
+        public bool ReadOnly
+        {
+            get => LengthTextBox.ReadOnly;
+
+            set
+            {
+                LengthTextBox.ReadOnly = value;
+                WidthTextBox.ReadOnly = value;
+                HeightTextBox.ReadOnly = value;
+            }
+        }
 
         private void LeaveTextBox(object sender)
         {

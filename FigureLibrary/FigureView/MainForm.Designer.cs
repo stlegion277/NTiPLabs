@@ -29,16 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fIleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddButton = new System.Windows.Forms.Button();
             this.RemoveButton = new System.Windows.Forms.Button();
             this.ModifyButton = new System.Windows.Forms.Button();
@@ -46,12 +42,19 @@
             this.ToVolume = new System.Windows.Forms.TextBox();
             this.HyphenLabel = new System.Windows.Forms.Label();
             this.SearchLabel = new System.Windows.Forms.Label();
-            this.pyramidInfoControl = new FigureView.PyramidControl();
-            this.sphereInfoControl = new FigureView.SphereControl();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.FigureType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.SphereControlLabel = new System.Windows.Forms.Label();
+            this.PyramidControlLabel = new System.Windows.Forms.Label();
+            this.ParallelepipedControlLabel = new System.Windows.Forms.Label();
             this.parallelepipedInfoControl = new FigureView.ParallelepipedControl();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
+            this.sphereInfoControl = new FigureView.SphereControl();
+            this.pyramidInfoControl = new FigureView.PyramidControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialog
@@ -91,30 +94,6 @@
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // dataGridView
-            // 
-            this.dataGridView.AutoGenerateColumns = false;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2});
-            this.dataGridView.DataSource = this.bindingSource;
-            this.dataGridView.Location = new System.Drawing.Point(103, 12);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(240, 150);
-            this.dataGridView.TabIndex = 1;
-            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Figure";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Volume";
-            this.Column2.Name = "Column2";
-            // 
             // AddButton
             // 
             this.AddButton.Location = new System.Drawing.Point(103, 187);
@@ -147,26 +126,26 @@
             // 
             // FromVolume
             // 
-            this.FromVolume.Location = new System.Drawing.Point(400, 70);
+            this.FromVolume.Location = new System.Drawing.Point(392, 37);
             this.FromVolume.Name = "FromVolume";
             this.FromVolume.Size = new System.Drawing.Size(100, 20);
             this.FromVolume.TabIndex = 5;
-            this.FromVolume.TextChanged += new System.EventHandler(this.MinID_TextChanged);
-            this.FromVolume.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MinID_KeyPress);
+            this.FromVolume.TextChanged += new System.EventHandler(this.FromVolume_TextChanged);
+            this.FromVolume.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.FromVolume_KeyPress);
             // 
             // ToVolume
             // 
-            this.ToVolume.Location = new System.Drawing.Point(531, 70);
+            this.ToVolume.Location = new System.Drawing.Point(523, 37);
             this.ToVolume.Name = "ToVolume";
             this.ToVolume.Size = new System.Drawing.Size(100, 20);
             this.ToVolume.TabIndex = 6;
-            this.ToVolume.TextChanged += new System.EventHandler(this.MaxID_TextChanged);
-            this.ToVolume.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MaxID_KeyPress);
+            this.ToVolume.TextChanged += new System.EventHandler(this.ToVolume_TextChanged);
+            this.ToVolume.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToVolume_KeyPress);
             // 
             // HyphenLabel
             // 
             this.HyphenLabel.AutoSize = true;
-            this.HyphenLabel.Location = new System.Drawing.Point(506, 69);
+            this.HyphenLabel.Location = new System.Drawing.Point(498, 36);
             this.HyphenLabel.Name = "HyphenLabel";
             this.HyphenLabel.Size = new System.Drawing.Size(19, 13);
             this.HyphenLabel.TabIndex = 7;
@@ -175,45 +154,104 @@
             // SearchLabel
             // 
             this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(496, 45);
+            this.SearchLabel.Location = new System.Drawing.Point(488, 12);
             this.SearchLabel.Name = "SearchLabel";
             this.SearchLabel.Size = new System.Drawing.Size(41, 13);
             this.SearchLabel.TabIndex = 8;
             this.SearchLabel.Text = "Search";
             // 
-            // pyramidInfoControl
+            // dataGridView
             // 
-            this.pyramidInfoControl.Location = new System.Drawing.Point(12, 232);
-            this.pyramidInfoControl.Name = "pyramidInfoControl";
-            this.pyramidInfoControl.Pyramid = null;
-            this.pyramidInfoControl.ReadOnly = true;
-            this.pyramidInfoControl.Size = new System.Drawing.Size(161, 133);
-            this.pyramidInfoControl.TabIndex = 10;
+            this.dataGridView.AutoGenerateColumns = false;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FigureType,
+            this.Amount});
+            this.dataGridView.DataSource = this.bindingSource;
+            this.dataGridView.Location = new System.Drawing.Point(103, 12);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView.TabIndex = 1;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
-            // sphereInfoControl
+            // FigureType
             // 
-            this.sphereInfoControl.Location = new System.Drawing.Point(168, 216);
-            this.sphereInfoControl.Name = "sphereInfoControl";
-            this.sphereInfoControl.ReadOnly = false;
-            this.sphereInfoControl.Size = new System.Drawing.Size(175, 149);
-            this.sphereInfoControl.Sphere = null;
-            this.sphereInfoControl.TabIndex = 11;
+            this.FigureType.DataPropertyName = "FigureType";
+            this.FigureType.HeaderText = "Figure";
+            this.FigureType.Name = "FigureType";
+            this.FigureType.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            this.Amount.DataPropertyName = "Amount";
+            this.Amount.HeaderText = "Amount";
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // bindingSource
+            // 
+            this.bindingSource.DataSource = typeof(FigureLibrary.FigureBase);
+            // 
+            // SphereControlLabel
+            // 
+            this.SphereControlLabel.AutoSize = true;
+            this.SphereControlLabel.Location = new System.Drawing.Point(427, 81);
+            this.SphereControlLabel.Name = "SphereControlLabel";
+            this.SphereControlLabel.Size = new System.Drawing.Size(41, 13);
+            this.SphereControlLabel.TabIndex = 13;
+            this.SphereControlLabel.Text = "Sphere";
+            // 
+            // PyramidControlLabel
+            // 
+            this.PyramidControlLabel.AutoSize = true;
+            this.PyramidControlLabel.Location = new System.Drawing.Point(427, 171);
+            this.PyramidControlLabel.Name = "PyramidControlLabel";
+            this.PyramidControlLabel.Size = new System.Drawing.Size(44, 13);
+            this.PyramidControlLabel.TabIndex = 14;
+            this.PyramidControlLabel.Text = "Pyramid";
+            // 
+            // ParallelepipedControlLabel
+            // 
+            this.ParallelepipedControlLabel.AutoSize = true;
+            this.ParallelepipedControlLabel.Location = new System.Drawing.Point(563, 81);
+            this.ParallelepipedControlLabel.Name = "ParallelepipedControlLabel";
+            this.ParallelepipedControlLabel.Size = new System.Drawing.Size(73, 13);
+            this.ParallelepipedControlLabel.TabIndex = 15;
+            this.ParallelepipedControlLabel.Text = "Parallelepiped";
             // 
             // parallelepipedInfoControl
             // 
             this.parallelepipedInfoControl.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.parallelepipedInfoControl.Location = new System.Drawing.Point(441, 136);
+            this.parallelepipedInfoControl.Location = new System.Drawing.Point(516, 97);
             this.parallelepipedInfoControl.Name = "parallelepipedInfoControl";
-            this.parallelepipedInfoControl.Parallelepiped = null;
             this.parallelepipedInfoControl.ReadOnly = true;
-            this.parallelepipedInfoControl.Size = new System.Drawing.Size(150, 150);
+            this.parallelepipedInfoControl.Size = new System.Drawing.Size(150, 146);
             this.parallelepipedInfoControl.TabIndex = 12;
+            // 
+            // sphereInfoControl
+            // 
+            this.sphereInfoControl.Location = new System.Drawing.Point(382, 81);
+            this.sphereInfoControl.Name = "sphereInfoControl";
+            this.sphereInfoControl.ReadOnly = false;
+            this.sphereInfoControl.Size = new System.Drawing.Size(128, 65);
+            this.sphereInfoControl.TabIndex = 11;
+            // 
+            // pyramidInfoControl
+            // 
+            this.pyramidInfoControl.Location = new System.Drawing.Point(392, 187);
+            this.pyramidInfoControl.Name = "pyramidInfoControl";
+            this.pyramidInfoControl.ReadOnly = true;
+            this.pyramidInfoControl.Size = new System.Drawing.Size(147, 126);
+            this.pyramidInfoControl.TabIndex = 10;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(674, 371);
+            this.Controls.Add(this.ParallelepipedControlLabel);
+            this.Controls.Add(this.PyramidControlLabel);
+            this.Controls.Add(this.SphereControlLabel);
             this.Controls.Add(this.parallelepipedInfoControl);
             this.Controls.Add(this.sphereInfoControl);
             this.Controls.Add(this.pyramidInfoControl);
@@ -229,10 +267,10 @@
             this.Name = "MainForm";
             this.Text = "Form1";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,9 +290,6 @@
         private System.Windows.Forms.ToolStripMenuItem fIleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button RemoveButton;
         private System.Windows.Forms.Button ModifyButton;
@@ -265,6 +300,13 @@
         private PyramidControl pyramidInfoControl;
         private SphereControl sphereInfoControl;
         private ParallelepipedControl parallelepipedInfoControl;
+        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.Label SphereControlLabel;
+        private System.Windows.Forms.Label PyramidControlLabel;
+        private System.Windows.Forms.Label ParallelepipedControlLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FigureType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
     }
 }
 

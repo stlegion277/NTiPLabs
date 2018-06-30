@@ -126,6 +126,7 @@
     <EmbeddedResource Include="SphereControl.resx">
       <DependentUpon>SphereControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\FigureLibrary.FigureBase.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

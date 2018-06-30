@@ -13,13 +13,13 @@ namespace FigureLibrary
         /// свойство поля Area(площадь)
         /// </summary>
         [DataMember]
-        public double Area { get; }
+        public double Area { get; private set; }
 
         /// <summary>
         /// свойство поля Height(высота)
         /// </summary>
         [DataMember]
-        public double Height { get; }
+        public double Height { get; private set; }
 
         /// <summary>
         /// Конструктор класса <see cref="Pyramid"/>
@@ -44,7 +44,12 @@ namespace FigureLibrary
             {
                 return (Area * Height) / 3.0;
             }
-
+            set { }
         }
+
+        /// <summary>
+        /// возврат типа фигуры Пирамида
+        /// </summary>
+        public override string FigureType { get; set; } = "Pyramid";
     }
 }

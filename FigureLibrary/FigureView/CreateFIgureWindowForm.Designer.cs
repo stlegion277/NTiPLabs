@@ -67,12 +67,12 @@
             this.CancelButton.TabIndex = 8;
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // parallelepipedControl
             // 
             this.parallelepipedControl.Location = new System.Drawing.Point(409, 66);
             this.parallelepipedControl.Name = "parallelepipedControl";
-            this.parallelepipedControl.Parallelepiped = null;
             this.parallelepipedControl.ReadOnly = true;
             this.parallelepipedControl.Size = new System.Drawing.Size(150, 150);
             this.parallelepipedControl.TabIndex = 9;
@@ -81,7 +81,6 @@
             // 
             this.pyramidControl.Location = new System.Drawing.Point(409, 70);
             this.pyramidControl.Name = "pyramidControl";
-            this.pyramidControl.Pyramid = null;
             this.pyramidControl.ReadOnly = true;
             this.pyramidControl.Size = new System.Drawing.Size(161, 133);
             this.pyramidControl.TabIndex = 10;
@@ -92,7 +91,6 @@
             this.sphereControl.Name = "sphereControl";
             this.sphereControl.ReadOnly = false;
             this.sphereControl.Size = new System.Drawing.Size(175, 149);
-            this.sphereControl.Sphere = null;
             this.sphereControl.TabIndex = 11;
             // 
             // CreateFigureWindowForm

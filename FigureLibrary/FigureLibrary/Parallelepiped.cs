@@ -53,7 +53,14 @@ namespace FigureLibrary
             {
                 return Length * Width * Height;
             }
-            
+
+            set { }
+
         }
+
+        /// <summary>
+        /// возврат типа фигуры Параллелепипед
+        /// </summary>
+        public override string FigureType { get; set; } = "Parallelepied";
     }
 }

@@ -14,7 +14,13 @@ namespace FigureLibrary
         /// свойство для расчета обьема фигур
         /// </summary>
         [DataMember]
-        public abstract double Amount { get; }
+        public abstract double Amount { get; set; }
+
+        /// <summary>
+        /// свойство для возврата типа фигуры в WinForms
+        /// </summary>
+        [DataMember]
+        public abstract string FigureType { get; set; }
 
         /// <summary>
         /// константное значение для ограничения значения сверху TODO: Зачем паблик? RSDN. XML.//сделал
@@ -23,7 +29,7 @@ namespace FigureLibrary
         private const double Upperlimit = 100000;
 
         /// <summary>
-        /// 
+        /// Метод для проверки правильности введенных значений <see cref="CheckValue"/>
         /// </summary>
         /// <param name="a"></param>
         /// <returns></returns>

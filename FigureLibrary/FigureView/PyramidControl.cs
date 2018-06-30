@@ -5,17 +5,24 @@ using FigureLibrary;
 
 namespace FigureView
 {
+
     public partial class PyramidControl : UserControl
     {
-        private uint _baseArea = 0;
-        private uint _height = 0;
+        private double _area = 0;
+        private double _height = 0;
 
-        
+        /// <summary>
+        /// Конструктор PyramidControl
+        /// </summary>
         public PyramidControl()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Метод для установки значения по умолчанию
+        /// </summary>
+        /// <param name="sender"></param>
         private void LeaveTextBox(object sender)
         {
             if (!(sender is TextBox textBox)) return;
@@ -25,6 +32,10 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Метод для ввода в TextBox
+        /// </summary>
+        /// <param name="e"></param>
         private void PressDigit(KeyPressEventArgs e)
         {
             var number = e.KeyChar;
@@ -34,6 +45,10 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
         private void EnterTextBox(object sender)
         {
             if (!(sender is TextBox textBox)) return;
@@ -46,23 +61,7 @@ namespace FigureView
         [Browsable(false)]
         public Pyramid Pyramid
         {
-            get
-            {
-                var _baseArea = AreaTextBox.Text != string.Empty ? Convert.ToDouble(AreaTextBox.Text) : 0;
-                var _height= HeightTextBox.Text != string.Empty ? Convert.ToDouble(HeightTextBox.Text) : 0;
-                if ((_baseArea <= 100000) && (_height <= 800)
-                                          && (_baseArea > 0) && (_height > 0))
-                {
-                    return new Pyramid(_baseArea, _height);
-                }
-                else
-                {
-                    //MessageBox.Show("Площадь основания должна быть больше 0 и не превышать 100000\n" +
-                    //                "Высота должна быть больше 0 и не превышать 800", "Error",
-                    //    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
-            }
+            get => new Pyramid(_area, _height);
             set
             {
                 if (value == null) return;
@@ -71,17 +70,39 @@ namespace FigureView
             }
         }
 
-        public bool ReadOnly { get; set; } = true;
+        /// <summary>
+        /// Метод для блокирования полей
+        /// </summary>
+        public bool ReadOnly
+        {
+            get => HeightTextBox.ReadOnly;
+            set
+            {
+                HeightTextBox.ReadOnly = value;
+                AreaTextBox.ReadOnly = value;
+            }
+        }
 
+        /// <summary>
+        /// Событие для изменения текста 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeightTextBox_TextChanged(object sender, EventArgs e)
         {
-            _height = HeightTextBox.Text != string.Empty ? Convert.ToUInt32(HeightTextBox.Text) : 0;
+            _height = HeightTextBox.Text != string.Empty ? Convert.ToDouble(HeightTextBox.Text) : 0;
         }
 
+        /// <summary>
+        /// Событие для изменения текста
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AreaTextBox_TextChanged(object sender, EventArgs e)
         {
-            _baseArea = AreaTextBox.Text != string.Empty ? Convert.ToUInt32(AreaTextBox.Text) : 0;
+            _area = AreaTextBox.Text != string.Empty ? Convert.ToDouble(AreaTextBox.Text) : 0;
         }
+
 
         private void AreaTextBox_Leave(object sender, EventArgs e)
         {

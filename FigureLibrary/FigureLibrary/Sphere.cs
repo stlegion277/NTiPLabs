@@ -38,6 +38,12 @@ namespace FigureLibrary
             {
                 return (4.0 / 3.0) * Math.PI * Radius * Radius * Radius;
             }
+            set { }
         }
+
+        /// <summary>
+        /// возврат типа фигуры Шар
+        /// </summary>
+        public override string FigureType { get; set; } = "Sphere";
     }
 }

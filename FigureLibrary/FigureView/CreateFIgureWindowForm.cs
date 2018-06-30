@@ -5,8 +5,14 @@ using FigureLibrary;
 
 namespace FigureView
 {
+    /// <summary>
+    /// Форма для добавления фигуры
+    /// </summary>
     public partial class CreateFigureWindowForm : Form
     {
+        /// <summary>
+        /// Коструктор для формы добавления фигуры
+        /// </summary>
         public CreateFigureWindowForm()
         {
             InitializeComponent();
@@ -16,6 +22,7 @@ namespace FigureView
             sphereControl.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
            
         }   
+
 
         public FigureBase Figure
         {
@@ -38,18 +45,24 @@ namespace FigureView
                 switch (value)
                 {
                     case Pyramid pyramid:
+                        SelectFigureBox.SelectedIndex = 0;
                         pyramidControl.Pyramid = pyramid;
                         break;
                     case Parallelepiped parallelepiped:
+                        SelectFigureBox.SelectedIndex = 1;
                         parallelepipedControl.Parallelepiped = parallelepiped;
                         break;
                     case Sphere sphere:
+                        SelectFigureBox.SelectedIndex = 2;
                         sphereControl.Sphere = sphere;
                         break;
                 }
             }
         }
 
+        /// <summary>
+        /// Метод для блокирования полей
+        /// </summary>
         public bool ReadOnly
         {
             set
@@ -60,6 +73,11 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Метод(событие) для отображения UserControl-ов в зависимости от выбранной фигуры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SelectFigureBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (SelectFigureBox.SelectedIndex == 0)
@@ -87,9 +105,24 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Обработчик события для кнопки OK
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OKButton_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
+        }
+
+        /// <summary>
+        /// Обработчик события для кнопки Cancel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

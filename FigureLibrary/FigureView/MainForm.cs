@@ -7,6 +7,9 @@ using FigureLibrary;
 
 namespace FigureView
 {
+    /// <summary>
+    /// Главная форма
+    /// </summary>
     public partial class MainForm : Form
     {
         private List<FigureBase> _figures;
@@ -14,14 +17,15 @@ namespace FigureView
        
 
      
-
+        /// <summary>
+        /// Конструктор формы <see cref="MainForm"/>
+        /// </summary>
         public MainForm()
         {
             InitializeComponent();
             _figures = new List<FigureBase>();
             bindingSource.DataSource = _figures;
             dataGridView.DataSource = bindingSource;
-            dataGridView.Refresh();
             List<Type> knownTypes = new List<Type>
             {
                 typeof(Pyramid),
@@ -32,15 +36,24 @@ namespace FigureView
             _serializer = new DataContractJsonSerializer(typeof(List<FigureBase>), knownTypes);
         }
 
+        /// <summary>
+        /// Метод для сокрытия UserControl-ов
+        /// </summary>
         private void HideControls()
         {
+            ParallelepipedControlLabel.Visible = false;
+            PyramidControlLabel.Visible = false;
+            SphereControlLabel.Visible = false;
             parallelepipedInfoControl.Visible = false;
             pyramidInfoControl.Visible = false;
             sphereInfoControl.Visible = false;
         }
 
-
-        private void ChangeIDBox(EventArgs e)
+        /// <summary>
+        /// метод для поиска в двух TextBox-ах
+        /// </summary>
+        /// <param name="e"></param>
+        private void ChangeVolumeBox(EventArgs e)
         {
             for (int index = 0; index < dataGridView.RowCount; index++)
             {
@@ -52,7 +65,7 @@ namespace FigureView
                 List<int> indexes = new List<int>();
                 for (int counter = 0; counter < dataGridView.RowCount; counter++)
                 {
-                    double volume = Convert.ToDouble(dataGridView.Rows[counter].Cells["Volume"].Value);
+                    double volume = Convert.ToDouble(dataGridView.Rows[counter].Cells["Amount"].Value);
                     if ((volume < Convert.ToDouble(FromVolume.Text))
                         || (volume > Convert.ToDouble(ToVolume.Text)))
                     {
@@ -62,12 +75,16 @@ namespace FigureView
                 dataGridView.CurrentCell = null;
                 foreach (int index in indexes)
                 {
-                    dataGridView.Rows[index].Visible = true;
+                    dataGridView.Rows[index].Visible = false;
                 }
 
             }
         }
 
+        /// <summary>
+        /// метод для ввода в TextBox
+        /// </summary>
+        /// <param name="e"></param>
         private void PressDigit(KeyPressEventArgs e)
         {
             char number = e.KeyChar;
@@ -77,6 +94,11 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Метод прописаннный для кнопки добавления фигуры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddButton_Click(object sender, EventArgs e)
         {
             CreateFigureWindowForm addFigure = new CreateFigureWindowForm()
@@ -85,7 +107,7 @@ namespace FigureView
             };
 
             addFigure.ShowDialog();
-            if (addFigure.DialogResult == DialogResult.OK)
+            if (addFigure.DialogResult == DialogResult.OK && addFigure.Figure != null)
             {
                 bindingSource.Add(addFigure.Figure);
             }
@@ -94,12 +116,13 @@ namespace FigureView
             {
                 return;
             }
-            if (addFigure.Figure != null)
-            {
-                bindingSource.Add(addFigure.Figure);
-            }
         }
 
+        /// <summary>
+        /// Метод прописанный для удаления фигуры
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveButton_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedCells.Count > 0)
@@ -110,11 +133,21 @@ namespace FigureView
             }
         }   
 
-        private void MinID_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// TextBox поиска значение от (событие)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FromVolume_TextChanged(object sender, EventArgs e)
         {
-            ChangeIDBox(e);
+            ChangeVolumeBox(e);
         }
 
+        /// <summary>
+        /// Сохранение файлов(событие)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             saveFileDialog.AddExtension = true;
@@ -134,6 +167,12 @@ namespace FigureView
             }
         }
 
+
+        /// <summary>
+        /// открытие сохраненных файлов(событие)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             openFileDialog.AddExtension = true;
@@ -160,21 +199,42 @@ namespace FigureView
             }
         }
 
-        private void MaxID_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// TextBox поиска значение до (событие)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToVolume_TextChanged(object sender, EventArgs e)
         {
-            ChangeIDBox(e);
+            ChangeVolumeBox(e);
         }
 
-        private void MinID_KeyPress(object sender, KeyPressEventArgs e)
+        /// <summary>
+        /// Событие ввода(нажатия) в TextBox Значение от
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FromVolume_KeyPress(object sender, KeyPressEventArgs e)
         {
             PressDigit(e);
         }
 
-        private void MaxID_KeyPress(object sender, KeyPressEventArgs e)
+        /// <summary>
+        /// Событие ввода(нажатия) в TextBox Значение до
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ToVolume_KeyPress(object sender, KeyPressEventArgs e)
         {
             PressDigit(e);
         }
 
+
+        /// <summary>
+        /// Случайное добавление для отладки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MainForm_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -210,6 +270,11 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Событие для просмотра введенных значений(меняет UserControl-ы на форме)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView.CurrentRow == null) return;
@@ -217,11 +282,18 @@ namespace FigureView
             ChangeControl(figure);
         }
 
+        /// <summary>
+        /// Метод для отображения или сокрытия UserControl-ов
+        /// </summary>
+        /// <param name="figure"></param>
         private void ChangeControl(FigureBase figure)
         {
             switch (figure)
             {
                 case Pyramid pyramid:
+                    ParallelepipedControlLabel.Visible = false;
+                    SphereControlLabel.Visible = false;
+                    PyramidControlLabel.Visible = true;
                     pyramidInfoControl.Visible = true;
                     parallelepipedInfoControl.Visible = false;
                     sphereInfoControl.Visible = false;
@@ -229,13 +301,19 @@ namespace FigureView
                     pyramidInfoControl.Pyramid = pyramid;
                     break;
                 case Parallelepiped parallelepiped:
+                    ParallelepipedControlLabel.Visible = true;
                     parallelepipedInfoControl.Visible = true;
                     pyramidInfoControl.Visible = false;
                     sphereInfoControl.Visible = false;
-                    pyramidInfoControl.ReadOnly = true;
+                    parallelepipedInfoControl.ReadOnly = true;
+                    PyramidControlLabel.Visible = false;
+                    SphereControlLabel.Visible = false;
                     parallelepipedInfoControl.Parallelepiped = parallelepiped;
                     break;
                 case Sphere sphere:
+                    ParallelepipedControlLabel.Visible = false;
+                    PyramidControlLabel.Visible = false;
+                    SphereControlLabel.Visible = true;
                     sphereInfoControl.Visible = true;
                     parallelepipedInfoControl.Visible = false;
                     pyramidInfoControl.Visible = false;
@@ -245,6 +323,11 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Метод для модификации данных в DataGridView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ModifyButton_Click(object sender, EventArgs e)
         {
             CreateFigureWindowForm modifyFigureForm = new CreateFigureWindowForm()
