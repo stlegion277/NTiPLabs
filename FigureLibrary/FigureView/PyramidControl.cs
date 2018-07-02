@@ -5,7 +5,9 @@ using FigureLibrary;
 
 namespace FigureView
 {
-
+    /// <summary>
+    /// UserControl для Pyramid
+    /// </summary>
     public partial class PyramidControl : UserControl
     {
         private double _area = 0;
@@ -46,7 +48,7 @@ namespace FigureView
         }
 
         /// <summary>
-        /// 
+        /// Метод для обнуления строки
         /// </summary>
         /// <param name="sender"></param>
         private void EnterTextBox(object sender)
@@ -58,6 +60,9 @@ namespace FigureView
             }
         }
 
+        /// <summary>
+        /// Свойство Pyramid
+        /// </summary>
         [Browsable(false)]
         public Pyramid Pyramid
         {
@@ -71,7 +76,7 @@ namespace FigureView
         }
 
         /// <summary>
-        /// Метод для блокирования полей
+        /// Свойство для блокирования полей
         /// </summary>
         public bool ReadOnly
         {
@@ -84,7 +89,7 @@ namespace FigureView
         }
 
         /// <summary>
-        /// Событие для изменения текста 
+        /// Обработчик события для изменения текста 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -94,7 +99,7 @@ namespace FigureView
         }
 
         /// <summary>
-        /// Событие для изменения текста
+        ///Обработчик события для изменения текста
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,32 +108,61 @@ namespace FigureView
             _area = AreaTextBox.Text != string.Empty ? Convert.ToDouble(AreaTextBox.Text) : 0;
         }
 
-
+        /// <summary>
+        /// Обработчик события установки значения по умолчанию
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AreaTextBox_Leave(object sender, EventArgs e)
         {
             LeaveTextBox(sender);
         }
 
+        /// <summary>
+        /// Обработчик события установки значения по умолчанию
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeightTextBox_Leave(object sender, EventArgs e)
         {
             LeaveTextBox(sender);
         }
 
+        /// <summary>
+        /// Обработчик события обнуляющий строки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AreaTextBox_Enter(object sender, EventArgs e)
         {
             EnterTextBox(sender);
         }
 
+        /// <summary>
+        /// Обработчик события обнуляющий строки
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeightTextBox_Enter(object sender, EventArgs e)
         {
             EnterTextBox(sender);
         }
 
+        /// <summary>
+        /// Обработчик события отпуска и нажима клавиши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AreaTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             PressDigit(e);
         }
 
+        /// <summary>
+        /// Обработчик события отпуска и нажима клавиши
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HeightTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             PressDigit(e);
